@@ -34,6 +34,14 @@
 </tr>
 
 <tr>
+	<th scope="row"><label for="settings-email"><?php _e('Subscribe Checkbox', 'ninja-forms-mailchimp-subscribe'); ?></label>
+	</th>
+	<td>
+		<input name="settings[subscribe]" type="text" id="settings-subscribe" value="<?php echo $subscribe; ?>" placeholder="Specify the checkbox field of the form" class="nf-tokenize" data-token-limit="1" data-key="subscribe" data-type="all">
+	</td>
+</tr>
+
+<tr>
 	<th scope="row"><label for="settings-first_name"><?php _e('First name', 'ninja-forms-mailchimp-subscribe'); ?></label>
 	</th>
 	<td>

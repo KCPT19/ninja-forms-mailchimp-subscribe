@@ -54,6 +54,10 @@ class NF_DJ_Notification_MailchimpSubscribe extends NF_Notification_Base_Type {
 		$api_key = Ninja_Forms()->notification($id)->get_setting('api_key');
 		$list_id = Ninja_Forms()->notification($id)->get_setting('list_id');
 		$email   = $this->process_setting($id, 'email');
+		$subscribe   = $this->process_setting($id, 'subscribe');
+
+		if( !$subscribe )
+			return;
 
 		if (empty($api_key) || empty($list_id) || empty($email)) {
 			//file_put_contents('/tmp/notifications-pushbullet-class.log', "Empty access token\n", FILE_APPEND);
