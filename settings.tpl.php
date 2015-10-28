@@ -29,7 +29,7 @@
 	<th scope="row"><label for="settings-email"><?php _e('E-mail', 'ninja-forms-mailchimp-subscribe'); ?></label>
 	</th>
 	<td>
-		<input name="settings[email]" type="text" id="settings-email" value="<?php echo $email; ?>" placeholder="Specify the e-mail field of the form" class="nf-tokenize" data-token-limit="1" data-key="email" data-type="email">
+		<input name="settings[email]" type="text" id="settings-email" value="<?php echo $email; ?>" placeholder="Specify the e-mail field of the form" class="nf-tokenize" data-token-limit="1" data-key="email" data-type="all">
 	</td>
 </tr>
 
