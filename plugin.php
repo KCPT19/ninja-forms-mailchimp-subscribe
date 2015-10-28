@@ -52,12 +52,12 @@ class NF_DJ_Notification_MailchimpSubscribe extends NF_Notification_Base_Type {
 	public function process($id) {
 		$form_id = ($id) ? Ninja_Forms()->notification($id)->form_id : '';
 
-		$api_key = Ninja_Forms()->notification($id)->get_setting('api_key');
-		$list_id = Ninja_Forms()->notification($id)->get_setting('list_id');
-		$email   = $this->process_setting($id, 'email');
-		$subscribe   = $this->process_setting($id, 'subscribe');
+		$api_key   = Ninja_Forms()->notification($id)->get_setting('api_key');
+		$list_id   = Ninja_Forms()->notification($id)->get_setting('list_id');
+		$email     = $this->process_setting($id, 'email');
+		$subscribe = $this->process_setting($id, 'subscribe');
 
-		if( !$subscribe )
+		if( 'checked' != $subscribe )
 			return;
 
 		if (empty($api_key) || empty($list_id) || empty($email)) {
@@ -79,6 +79,8 @@ class NF_DJ_Notification_MailchimpSubscribe extends NF_Notification_Base_Type {
 
 		$mc = new MailChimp($api_key);
 
+		$mc->verify_ssl = false;
+
 		$added = $mc->post("lists/{$list_id}/members", array(
 			'email_address' => $email,
 			'status'        => 'subscribed',
@@ -88,7 +90,7 @@ class NF_DJ_Notification_MailchimpSubscribe extends NF_Notification_Base_Type {
 		if($added) {
 			//
 		} else {
-			// Could be SSL-verify of cURL that fails...
+			// Could be SSL-verify of cURL that fai
 		}
 	}
 

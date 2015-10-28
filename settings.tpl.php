@@ -3,6 +3,7 @@
  * @var $api_key
  * @var $list_id
  * @var $email
+ * @var $subscribe
  * @var $first_name
  * @var $last_name
  */
