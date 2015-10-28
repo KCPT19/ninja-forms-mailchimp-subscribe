@@ -32,6 +32,7 @@ class NF_DJ_Notification_MailchimpSubscribe extends NF_Notification_Base_Type {
 			$api_key    = Ninja_Forms()->notification($id)->get_setting('api_key');
 			$list_id    = Ninja_Forms()->notification($id)->get_setting('list_id');
 			$email      = Ninja_Forms()->notification($id)->get_setting('email');
+			$subscribe  = Ninja_Forms()->notification($id)->get_setting('subscribe');
 			$first_name = Ninja_Forms()->notification($id)->get_setting('first_name');
 			$last_name  = Ninja_Forms()->notification($id)->get_setting('last_name');
 		}
