@@ -83,7 +83,7 @@ class NF_DJ_Notification_MailchimpSubscribe extends NF_Notification_Base_Type {
 
 		$added = $mc->post("lists/{$list_id}/members", array(
 			'email_address' => $email,
-			'status'        => 'subscribed',
+			'status'        => 'pending',
 			'merge_fields'  => $merge_fields
 		));
 
