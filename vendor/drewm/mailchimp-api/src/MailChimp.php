@@ -93,6 +93,10 @@ class MailChimp
                     curl_setopt($ch, CURLOPT_URL, $url.'?'.$query);
                     break;
 
+                case 'put':
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+                    break;
+
                 case 'delete':
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
                     break;

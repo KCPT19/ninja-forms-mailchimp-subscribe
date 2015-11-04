@@ -81,17 +81,33 @@ class NF_DJ_Notification_MailchimpSubscribe extends NF_Notification_Base_Type {
 
 		$mc->verify_ssl = false;
 
-		$added = $mc->post("lists/{$list_id}/members", array(
+		$subscriberHash = md5( strtolower( trim( $email ) ) );
+
+		$optionsArr = array(
 			'email_address' => $email,
-			'status'        => 'pending',
-			'merge_fields'  => $merge_fields
-		));
+			'status'        => 'pending'
+		);
+
+		if( count( $merge_fields ) > 0 ) {
+			$optionsArr['merge_fields']  = $merge_fields;
+		}
+
+		// Original working code is post.
+		$added = $mc->post("lists/{$list_id}/members", $optionsArr);
+
+		// Opt back in code, this code should create or update a subscriber... but produces and unknown error we're unable to debug:
+		// $added = $mc->put("lists/{$list_id}/members/{$subscriberHash}", $optionsArr);
 
 		if($added) {
 			//
+			// file_put_contents('mailchimp-errors.log', "Error: \n" . print_r( $added, true ) . "\n", FILE_APPEND);
 		} else {
 			// Could be SSL-verify of cURL that fai
+			file_put_contents('mailchimp-errors.log', "Error: \n" . print_r( $added, true ) . "\n", FILE_APPEND);
+			file_put_contents('mailchimp-errors.log', $subscriberHash . "\n", FILE_APPEND);
+			file_put_contents('mailchimp-errors.log', print_r( $optionsArr, true ) . "\n", FILE_APPEND);
 		}
+		
 	}
 
 	/**
